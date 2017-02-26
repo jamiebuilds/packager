@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`async 1`] = `
+Object {
+  "edges": Object {
+    "/../packages/packager/__fixtures__/async/entry.js": Array [
+      Object {
+        "async": true,
+        "filePath": "/../packages/packager/__fixtures__/async/moduleA.js",
+      },
+      Object {
+        "async": true,
+        "filePath": "/../packages/packager/__fixtures__/async/moduleB.js",
+      },
+    ],
+  },
+  "nodes": Object {
+    "/../packages/packager/__fixtures__/async/entry.js": Object {
+      "fileContents": "import(\\"./moduleA\\");
+import(\\"./moduleB\\");
+",
+      "filePath": "/../packages/packager/__fixtures__/async/entry.js",
+    },
+    "/../packages/packager/__fixtures__/async/moduleA.js": Object {
+      "fileContents": "console.log('moduleA');
+",
+      "filePath": "/../packages/packager/__fixtures__/async/moduleA.js",
+    },
+    "/../packages/packager/__fixtures__/async/moduleB.js": Object {
+      "fileContents": "console.log('moduleB');
+",
+      "filePath": "/../packages/packager/__fixtures__/async/moduleB.js",
+    },
+  },
+}
+`;
+
+exports[`sync 1`] = `
+Object {
+  "edges": Object {
+    "/../packages/packager/__fixtures__/sync/entry.js": Array [
+      Object {
+        "async": false,
+        "filePath": "/../packages/packager/__fixtures__/sync/moduleA.js",
+      },
+      Object {
+        "async": false,
+        "filePath": "/../packages/packager/__fixtures__/sync/moduleB.js",
+      },
+    ],
+  },
+  "nodes": Object {
+    "/../packages/packager/__fixtures__/sync/entry.js": Object {
+      "fileContents": "import \\"./moduleA\\";
+import \\"./moduleB\\";
+",
+      "filePath": "/../packages/packager/__fixtures__/sync/entry.js",
+    },
+    "/../packages/packager/__fixtures__/sync/moduleA.js": Object {
+      "fileContents": "console.log('moduleA');
+",
+      "filePath": "/../packages/packager/__fixtures__/sync/moduleA.js",
+    },
+    "/../packages/packager/__fixtures__/sync/moduleB.js": Object {
+      "fileContents": "console.log('moduleB');
+",
+      "filePath": "/../packages/packager/__fixtures__/sync/moduleB.js",
+    },
+  },
+}
+`;

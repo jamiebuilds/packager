@@ -1,0 +1,40 @@
+declare module 'babylon' {
+  declare type BabylonOptions = {
+    allowImportExportEverywhere?: boolean,
+    allowReturnOutsideFunction?: boolean,
+    // allowSuperOutsideMethod?: boolean,
+    sourceType?: 'script' | 'module',
+    sourceFilename?: string,
+    startLine?: number,
+    plugins?: Array<string>,
+    // strictMode?: boolean,
+  };
+
+  declare type Token = {
+    label: string,
+    keyword: string,
+    beforeExpr: boolean,
+    startsExpr: boolean,
+    rightAssociative: boolean,
+    isLoop: boolean,
+    isAssign: boolean,
+    prefix: boolean,
+    postfix: boolean,
+    binop: null,
+    updateContext: null
+  };
+
+  declare export var tokTypes: {
+    [token: string]: Token
+  };
+
+  declare export function parse(
+    code: string,
+    options?: BabylonOptions
+  ): Object;
+
+  declare export function parseExpression(
+    code: string,
+    options?: BabylonOptions
+  ): Object;
+}

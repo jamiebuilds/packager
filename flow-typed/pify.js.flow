@@ -1,0 +1,3 @@
+declare module 'pify' {
+  declare module.exports: Function;
+}

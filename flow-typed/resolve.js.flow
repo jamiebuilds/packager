@@ -1,0 +1,33 @@
+declare type $npm$resolve$IsFileCallback = (err: Error, isFile?: boolean) => void; // Callback invoked when checking if a file exists
+declare type $npm$resolve$ReadFileCallback = (err: Error, file?: Buffer) => void; // Callback invoked when reading a file
+
+declare interface $npm$resolve$ResolveOptions {
+  basedir?: string; // directory to begin resolving from (defaults to __dirname)
+  package?: Object; // package.json data applicable to the module being loaded
+  extensions?: string | Array<string>; // array of file extensions to search in order (defaults to ['.js'])
+  packageFilter?: (pkg: Object, pkgfile: string) => Object; // transform the parsed package.json contents before looking at the "main" field
+  pathFilter?: (pkg: Object, path: string, relativePath: string) => string; // transform a path within a package
+  paths?: string | Array<string>; // require.paths array to use if nothing is found on the normal node_modules recursive walk (probably don't use this)
+  moduleDirectory?: string | Array<string> // directory (or directories) in which to recursively look for modules. (default to 'node_modules')
+}
+
+declare interface $npm$resolve$ResolveAsyncOptions extends $npm$resolve$ResolveOptions {
+  readFile?: (file: string, cb: $npm$resolve$ReadFileCallback) => void; // how to read files asynchronously (defaults to fs.readFile)
+  isFile?: (file: string, cb: $npm$resolve$IsFileCallback) => void; // function to asynchronously test whether a file exists
+}
+
+declare interface $npm$resolve$ResolveSyncOptions extends $npm$resolve$ResolveOptions {
+  readFileSync?: (file: string) => Buffer; // how to read files synchronously (defaults to fs.readFileSync)
+  isFile?: (file: string) => boolean; // function to synchronously test whether a file exists
+}
+
+declare module 'resolve' {
+  declare type Callback = (err: Error, resolved?: string) => void; // Callback invoked when resolving asynchronously
+
+  declare module.exports: {
+    (id: string, cb: Callback): void; // Asynchronously resolve the module path string id into cb(err, res [, pkg]), where pkg (if defined) is the data from package.json
+    (id: string, opts: $npm$resolve$ResolveAsyncOptions, cb: Callback): void; // Asynchronously resolve the module path string id into cb(err, res [, pkg]), where pkg (if defined) is the data from package.json
+    sync(id: string, opts?: $npm$resolve$ResolveSyncOptions): string; // Synchronously resolve the module path string id, returning the result and throwing an error when id can't be resolved.
+    isCore(id: string): boolean; // Return whether a package is in core
+  };
+}

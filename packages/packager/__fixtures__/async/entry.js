@@ -1,0 +1,2 @@
+import("./moduleA");
+import("./moduleB");
